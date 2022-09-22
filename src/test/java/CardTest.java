@@ -16,6 +16,7 @@ public class CardTest {
     void setup() {
         open("http://localhost:9999/");
     }
+
     @Test
     void shouldCardValid() {
         $("[placeholder=\"Город\"]").setValue("Москва");
@@ -27,6 +28,7 @@ public class CardTest {
         $(".button").click();
         $("[data-test-id=notification] .notification__content").shouldBe(Condition.visible, ofSeconds(15)).shouldHave(exactText("Встреча успешно забронирована на " + corDate));
     }
+
     @Test
     void shouldCardWithDef() {
         $("[placeholder=\"Город\"]").setValue("Москва");
@@ -38,6 +40,7 @@ public class CardTest {
         $(".button").click();
         $("[data-test-id=notification] .notification__content").shouldBe(Condition.visible, ofSeconds(15)).shouldHave(exactText("Встреча успешно забронирована на " + corDate));
     }
+
     @Test
     void shouldCardWithWrongCity() {
         $("[placeholder=\"Город\"]").setValue("Стокгольм");
@@ -50,6 +53,7 @@ public class CardTest {
         String text = $("[data-test-id=\"city\"]").getText();
         Assertions.assertEquals("Доставка в выбранный город недоступна", text.trim());
     }
+
     @Test
     void shouldCardWithWrongDate() {
         $("[placeholder=\"Город\"]").setValue("Москва");
@@ -62,6 +66,7 @@ public class CardTest {
         String text = $("[data-test-id=\"date\"]").getText();
         Assertions.assertEquals("Заказ на выбранную дату невозможен", text.trim());
     }
+
     @Test
     void shoudlCardWithWrongName() {
         $("[placeholder=\"Город\"]").setValue("Москва");
@@ -74,6 +79,7 @@ public class CardTest {
         String text = $("[data-test-id=\"name\"].input_invalid .input__sub").getText();
         Assertions.assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.", text.trim());
     }
+
     @Test
     void shouldCardWithWrongPhone() {
         $("[placeholder=\"Город\"]").setValue("Москва");
@@ -86,6 +92,7 @@ public class CardTest {
         String text = $("[data-test-id=\"phone\"].input_invalid .input__sub").getText();
         Assertions.assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", text.trim());
     }
+
     @Test
     void shouldCardWithoutName() {
         $("[placeholder=\"Город\"]").setValue("Москва");
@@ -98,6 +105,7 @@ public class CardTest {
         String text = $("[data-test-id=\"name\"].input_invalid .input__sub").getText();
         Assertions.assertEquals("Поле обязательно для заполнения", text.trim());
     }
+
     @Test
     void shouldCardWithoutPhone() {
         $("[placeholder=\"Город\"]").setValue("Москва");
@@ -110,6 +118,7 @@ public class CardTest {
         String text = $("[data-test-id=\"phone\"].input_invalid .input__sub").getText();
         Assertions.assertEquals("Поле обязательно для заполнения", text.trim());
     }
+
     @Test
     void shouldCardWithoutDate() {
         $("[placeholder=\"Город\"]").setValue("Москва");
